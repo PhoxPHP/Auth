@@ -1,0 +1,87 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "This file is @generated automatically"
+    ],
+    "content-hash": "639a907bdf69ae190911fbd6ae86e83d",
+    "packages": [
+        {
+            "name": "phoxphp/glider",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/PhoxPHP/Glider.git",
+                "reference": "9289cdc9f81acbc52978899e3ac5a7ad99bf8404"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/PhoxPHP/Glider/zipball/9289cdc9f81acbc52978899e3ac5a7ad99bf8404",
+                "reference": "9289cdc9f81acbc52978899e3ac5a7ad99bf8404",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.0.6"
+            },
+            "type": "project",
+            "autoload": {
+                "psr-4": {
+                    "Kit\\Glider\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "description": "PhoxPHP Database Component",
+            "keywords": [
+                "PHP7",
+                "database",
+                "php"
+            ],
+            "time": "2018-04-05 22:53:13"
+        },
+        {
+            "name": "phoxphp/prop",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/PhoxPHP/Prop.git",
+                "reference": "0e7f069e67afb25985ec72f9c696d4feeb8a9cbd"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/PhoxPHP/Prop/zipball/0e7f069e67afb25985ec72f9c696d4feeb8a9cbd",
+                "reference": "0e7f069e67afb25985ec72f9c696d4feeb8a9cbd",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.0.6"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Kit\\Prop\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "description": "PhoxPHP Support Packages",
+            "keywords": [
+                "PHP7",
+                "php",
+                "support"
+            ],
+            "time": "2018-01-19 17:44:42"
+        }
+    ],
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "stable",
+    "stability-flags": {
+        "phoxphp/glider": 20,
+        "phoxphp/prop": 20
+    },
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": {
+        "php": ">=7.0.6"
+    },
+    "platform-dev": []
+}

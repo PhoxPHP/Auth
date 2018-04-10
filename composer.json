@@ -1,0 +1,22 @@
+{
+	"name": "phoxphp/auth",
+	"description": "PhoxPHP Authentication Component",
+	"type": "project",
+	"keywords": ["php", "php7", "authentication"],
+	"author": [
+		{
+			"name": "Peter Taiwo",
+			"email": "taiwop3@gmail.com"
+		}
+	],
+	"require": {
+		"php": ">=7.0.6",
+		"phoxphp/glider": "dev-master",
+		"phoxphp/prop": "dev-master"
+	},
+	"autoload": {
+		"psr-4": {
+			"Kit\\Auth\\": "src"
+		}
+	}
+}
