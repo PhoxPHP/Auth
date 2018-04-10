@@ -25,50 +25,38 @@
 
 namespace Kit\Auth\Uses;
 
-use Kit\Auth\Auth;
 use Kit\Auth\Model\User;
 
-trait Register
+trait DeleteAccount
 {
 
 	/**
-	* Registers a new user.
+	* Deletes a user account using user id or email.
 	*
-	* @param 	$email <String>
-	* @param 	$password <String>
-	* @param 	$verifyPassword <String>
+	* @param 	$criteria <String>|<Integer>
+	* @access 	public
 	* @return 	Mixed
 	*/
-	public function register($email, $password, $verifyPassword)
+	public function deleteAccount($criteria=null)
 	{
-		$autoLogin = $this->getConfig('auto_login');
-		$user = new User($this);
-		$exists = User::findByEmail($email);
-
-		if ($exists) {
+		if ($criteria == null) {
 			$this->setErrorMessage(
-				$this->getMessage('auth.register.user_exists')
+				$this->getMessage('auth.delete.empty_criteria')
 			);
 			return false;
 		}
 
-		if ($this->getConfig('auto_activate') == true) {
-			$user->is_activated = 1;
+		if (gettype($criteria) == 'string') {		
+			$user = User::findByEmail($criteria);
+		}else if(is_int($criteria)) {
+			$user = User::findById($criteria);
+		}else{
+			return false;
 		}
 
-		$user->confirmation_code = uniqid();
-		$user->email = $email;
-		$user->password = $password;
-		$user->save();
+		$user->delete();
 
-		if ($autoLogin == false) {
-			return true;
-		}
-
-		return $this->login(
-			$email,
-			$password
-		);
+		return true;
 	}
 
 }

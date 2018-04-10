@@ -29,6 +29,7 @@ use Kit\Auth\Uses\Login;
 use Kit\Auth\Uses\Logout;
 use Kit\Auth\Uses\Register;
 use Kit\Auth\Uses\BlockAccount;
+use Kit\Auth\Uses\DeleteAccount;
 use Kit\Auth\Uses\ChangePassword;
 use Kit\Auth\Uses\ActivateAccount;
 use Kit\Auth\Contracts\AuthContract;
@@ -41,6 +42,7 @@ class Auth implements AuthContract
 	Register,
 	BlockAccount,
 	ChangePassword,
+	DeleteAccount,
 	ActivateAccount;
 
 	/**
@@ -114,5 +116,18 @@ class Auth implements AuthContract
 	protected function setErrorStatus(Bool $status)
 	{
 		$this->hasError = true;
+	}
+
+	/**
+	* Returns a message from array of messages in the configuration.
+	*
+	* @param 	$key <String>
+	* @access 	protected
+	* @return 	String
+	*/
+	protected function getMessage(String $key) : String
+	{
+		$messages = $this->getConfig('messages');
+		return $messages[$key];
 	}
 }

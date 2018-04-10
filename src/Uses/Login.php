@@ -48,17 +48,23 @@ trait Login
 		->andWhere('password', $password)->get();
 
 		if ($exists->size() < 1) {
-			$this->setErrorMessage('User does not exist.');
+			$this->setErrorMessage(
+				$this->getMessage('auth.login.user_not_found')
+			);
 			return false;
 		}
 
 		if ($exists->first()->is_blocked == 1) {
-			$this->setErrorMessage('Acccount has been blocked.');
+			$this->setErrorMessage(
+				$this->getMessage('auth.login.blocked')
+			);
 			return false;
 		}
 
 		if ($activationCheckEnabled && $exists->first()->is_activated == 0) {
-			$this->setErrorMessage('Acccount is not activated.');
+			$this->setErrorMessage(
+				$this->getMessage('auth.login.not_activated')
+			);
 			return false;
 		}
 
@@ -115,7 +121,20 @@ trait Login
 	*/
 	public function isLoggedIn()
 	{
+		$sessionName = $this->getConfig('auth_login_session_name');
+		session_start();
 
+		if (!isset($_SESSION[$sessionName])) {
+			return false;
+		}
+
+		$user = User::findBySession_Token($_SESSION[$sessionName]);
+		if (!$user) {
+			$this->logout();
+			return false;
+		}
+
+		return true;
 	}
 
 }
