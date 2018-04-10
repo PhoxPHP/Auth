@@ -11,7 +11,7 @@
 	],
 	"require": {
 		"php": ">=7.0.6",
-		"phoxphp/glider": "dev-master",
+		"phoxphp/glider": ">=1.0.2",
 		"phoxphp/prop": "dev-master"
 	},
 	"autoload": {

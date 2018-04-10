@@ -25,7 +25,6 @@
 
 namespace Kit\Auth\Uses;
 
-use Kit\Http\Session;
 use Kit\Auth\Model\User;
 
 trait Logout
@@ -39,7 +38,12 @@ trait Logout
 	*/
 	public function logout()
 	{
-		$sessionName = $this->getConfig('auth_login_session_name');
+		session_destroy();
+		session_unset();
+
+		// in case sessoion_destory does not work, this will invalidate the sessions.
+		$_SESSION = [];
+
 		setcookie(
 			// cookie name
 			'remember',
