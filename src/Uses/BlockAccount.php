@@ -41,7 +41,9 @@ trait BlockAccount
 	public function blockAccount($criteria=null)
 	{
 		if ($criteria == null) {
-			$this->setErrorMessage('Unable to block this account.');
+			$this->setErrorMessage(
+				$this->getMessage('auth.block.empty_criteria')
+			);
 			return false;
 		}
 
@@ -54,7 +56,9 @@ trait BlockAccount
 		}
 
 		if (!$user) {
-			$this->setErrorMessage('User does not exist.');
+			$this->setErrorMessage(
+				$this->getMessage('auth.block.user_not_found')
+			);
 			return false;
 		}
 
@@ -75,7 +79,9 @@ trait BlockAccount
 	public function unblockAccount($criteria=null)
 	{
 		if ($criteria == null) {
-			$this->setErrorMessage('Unable to unblock this account.');
+			$this->setErrorMessage(
+				$this->getMessage('auth.unblock.empty_criteria')
+			);
 			return false;
 		}
 
@@ -88,7 +94,9 @@ trait BlockAccount
 		}
 
 		if (!$user) {
-			$this->setErrorMessage('User does not exist.');
+			$this->setErrorMessage(
+				$this->getMessage('auth.unblock.user_not_found')
+			);
 			return false;
 		}
 

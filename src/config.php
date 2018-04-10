@@ -80,14 +80,20 @@ return [
 	#####################################################################
 	'activation_check' => true,
 
+	###############
+	# auth messages
+	###############
 	'messages' => [
-		'auth.login.not_found' => '',
-		'auth.login.blocked' => '',
-		'auth.login.not_activated' => '',
-		'auth.activate.user_not_found' => '',
-		'auth.activate.user_activated' => '',
-		'auth.register.user_exists' => '',
-		'auth.block.empty_criteria' => '',
-		'auth.block.user_not_found' => ''
+		'auth.login.user_not_found' => 'User does not exist.',
+		'auth.login.blocked' => 'Acccount has been blocked.',
+		'auth.login.not_activated' => 'Acccount is not activated.',
+		'auth.activate.user_not_found' => 'User does not exist.',
+		'auth.activate.user_activated' => 'Account already activated.',
+		'auth.register.user_exists' => 'User already exists',
+		'auth.block.empty_criteria' => 'Unable to block this account.',
+		'auth.block.user_not_found' => 'User does not exist.',
+		'auth.unblock.empty_criteria' => 'Unable to unblock this account.',
+		'auth.unblock.user_not_found' => 'User does not exist.',
+		'auth.delete.empty_criteria' => 'Unable to delete account.'
 	]
 ];

@@ -41,12 +41,16 @@ trait ActivateAccount
 	{
 		$user = User::findByConfirmation_Code($confirmationCode);
 		if (!$user) {
-			$this->setErrorMessage('User does not exist.');
+			$this->setErrorMessage(
+				$this->getMessage('auth.activate.user_not_found')
+			);
 			return false;
 		}
 
 		if ($user->is_activated == 1) {
-			$this->setErrorMessage('Account already activated.');
+			$this->setErrorMessage(
+				$this->getMessage('auth.activate.user_activated')
+			);
 			return false;
 		}
 
