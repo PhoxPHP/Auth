@@ -25,7 +25,39 @@
 
 namespace Kit\Auth\Uses;
 
+use Kit\Prop\Hashing;
+use Kit\Auth\Model\User;
+
 trait ChangePassword
 {
+
+	/**
+	* Change's a user password.
+	*
+	* @param 	$oldPassword <String>
+	* @param 	$newPassword <String>
+	* @access 	public
+	* @return 	Boolean
+	*/
+	public function changePassword(String $oldPassword, String $newPassword)
+	{
+		if (!$this->isLoggedIn()) {
+			return false;
+		}
+
+		$user = $this->user();
+
+		if (!Hashing::match($oldPassword, $user->password)) {
+			$this->setErrorMessage(
+				$this->getMessage('auth.password.incorrect_password')
+			);
+			return false;
+		}
+
+		$user->password = Hashing::make($newPassword);
+		$user->save();
+
+		return true;
+	}
 
 }

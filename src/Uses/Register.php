@@ -26,6 +26,7 @@
 namespace Kit\Auth\Uses;
 
 use Kit\Auth\Auth;
+use Kit\Prop\Hashing;
 use Kit\Auth\Model\User;
 
 trait Register
@@ -39,7 +40,7 @@ trait Register
 	* @param 	$verifyPassword <String>
 	* @return 	Mixed
 	*/
-	public function register($email, $password, $verifyPassword)
+	public function register($email, $password, $verifyPassword=null)
 	{
 		$autoLogin = $this->getConfig('auto_login');
 		$user = new User($this);
@@ -58,7 +59,7 @@ trait Register
 
 		$user->confirmation_code = uniqid();
 		$user->email = $email;
-		$user->password = $password;
+		$user->password = Hashing::make($password);
 		$user->save();
 
 		if ($autoLogin == false) {

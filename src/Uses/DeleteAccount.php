@@ -46,7 +46,7 @@ trait DeleteAccount
 			return false;
 		}
 
-		if (gettype($criteria) == 'string') {		
+		if (gettype($criteria) == 'string') {
 			$user = User::findByEmail($criteria);
 		}else if(is_int($criteria)) {
 			$user = User::findById($criteria);
