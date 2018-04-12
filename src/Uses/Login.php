@@ -43,25 +43,30 @@ trait Login
 	public function login(String $email, String $password, Bool $remember=false)
 	{
 		$activationCheckEnabled = $this->getConfig('activation_check');
-		$user = new User($this);
-		$exists = User::where('email', $email)
-		->andWhere('password', $password)->get();
+		$user = User::findByEmail($email);
 
-		if ($exists->size() < 1) {
+		if (!$user) {
 			$this->setErrorMessage(
 				$this->getMessage('auth.login.user_not_found')
 			);
 			return false;
 		}
 
-		if ($exists->first()->is_blocked == 1) {
+		if (!Hashing::match($password, $user->password)) {
+			$this->setErrorMessage(
+				$this->getMessage('auth.login.incorrect_password')
+			);
+			return false;
+		}
+
+		if ($user->is_blocked == 1) {
 			$this->setErrorMessage(
 				$this->getMessage('auth.login.blocked')
 			);
 			return false;
 		}
 
-		if ($activationCheckEnabled && $exists->first()->is_activated == 0) {
+		if ($activationCheckEnabled && $user->is_activated == 0) {
 			$this->setErrorMessage(
 				$this->getMessage('auth.login.not_activated')
 			);
@@ -69,16 +74,19 @@ trait Login
 		}
 
 		$sessionToken = Hashing::make(
-			$email . '_' . $exists->first()->id,
+			$email . '_' . $user->id,
 			5
 		);
 
-		$user->id = $exists->first()->id;
+		$user->id = $user->id;
 		$user->session_token = $sessionToken;
 		$user->save();
 
 		$sessionName = $this->getConfig('auth_login_session_name');
-		session_start();
+
+		if (session_status() == 0) {
+			session_start();
+		}
 
 		$_SESSION[$sessionName] = $sessionToken;
 		$_SESSION['SID'] = $user->id;
@@ -122,7 +130,9 @@ trait Login
 	public function isLoggedIn()
 	{
 		$sessionName = $this->getConfig('auth_login_session_name');
-		session_start();
+		if (session_status() == 0) {
+			session_start();
+		}
 
 		if (!isset($_SESSION[$sessionName])) {
 			return false;

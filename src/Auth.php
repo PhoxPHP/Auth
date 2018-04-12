@@ -26,6 +26,7 @@
 namespace Kit\Auth;
 
 use Kit\Auth\Uses\Login;
+use Kit\Auth\Model\User;
 use Kit\Auth\Uses\Logout;
 use Kit\Auth\Uses\Register;
 use Kit\Auth\Uses\BlockAccount;
@@ -104,6 +105,30 @@ class Auth implements AuthContract
 	public function hasError()
 	{
 		return $this->hasError;
+	}
+
+	/**
+	* Returns an authenticated user.
+	*
+	* @access 	public
+	* @return 	Object
+	*/
+	public function user()
+	{
+		if (!$this->isLoggedIn()) {
+			return false;
+		}
+
+		$sessionName = $_SESSION[
+			$this->getConfig('auth_login_session_name')
+		];
+
+		$user = User::findBySession_token($sessionName);
+		if (!$user) {
+			return false;
+		}
+
+		return $user;
 	}
 
 	/**

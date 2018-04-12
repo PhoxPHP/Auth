@@ -53,7 +53,8 @@ class User extends Model
 			'id',
 			'email',
 			'is_activated',
-			'is_blocked'
+			'is_blocked',
+			'password'
 		];
 	}
 

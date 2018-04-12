@@ -94,6 +94,8 @@ return [
 		'auth.block.user_not_found' => 'User does not exist.',
 		'auth.unblock.empty_criteria' => 'Unable to unblock this account.',
 		'auth.unblock.user_not_found' => 'User does not exist.',
-		'auth.delete.empty_criteria' => 'Unable to delete account.'
+		'auth.delete.empty_criteria' => 'Unable to delete account.',
+		'auth.login.incorrect_password' => 'Unable to login. Password is incorrect.',
+		'auth.password.incorrect_password' => 'Password is incorrect.'
 	]
 ];
