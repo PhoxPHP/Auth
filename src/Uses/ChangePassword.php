@@ -32,7 +32,7 @@ trait ChangePassword
 {
 
 	/**
-	* Change's a user password.
+	* Changes a user password.
 	*
 	* @param 	$oldPassword <String>
 	* @param 	$newPassword <String>
