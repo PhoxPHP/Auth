@@ -37,10 +37,10 @@ trait Register
 	*
 	* @param 	$email <String>
 	* @param 	$password <String>
-	* @param 	$verifyPassword <String>
+	* @param 	$fields <Array>
 	* @return 	Mixed
 	*/
-	public function register($email, $password, $verifyPassword=null)
+	public function register($email, $password, Array $fields=[])
 	{
 		$autoLogin = $this->getConfig('auto_login');
 		$user = new User($this);
@@ -60,6 +60,13 @@ trait Register
 		$user->confirmation_code = uniqid();
 		$user->email = $email;
 		$user->password = Hashing::make($password);
+
+		if (count(array_keys($fields)) > 0) {
+			foreach($fields as $key => $value) {
+				$user->$key = $value;
+			}
+		}
+
 		$user->save();
 
 		if ($autoLogin == false) {
