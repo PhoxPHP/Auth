@@ -1,19 +1,16 @@
 <?php
 /**
-* @author 	Peter Taiwo
-* @version 	1.0.0
+* @author 		Peter Taiwo <peter@phoxphp.com>
+* @package 		Kit\Auth\Auth
+* @license 		MIT License
 *
-* MIT License
 * Permission is hereby granted, free of charge, to any person obtaining a copy
 * of this software and associated documentation files (the "Software"), to deal
 * in the Software without restriction, including without limitation the rights
 * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 * copies of the Software, and to permit persons to whom the Software is
 * furnished to do so, subject to the following conditions:
-
-* The above copyright notice and this permission notice shall be included in all
-* copies or substantial portions of the Software.
-
+*
 * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -64,7 +61,7 @@ class Auth implements AuthContract
 	*
 	* @param 	$key <String>
 	* @access 	public
-	* @return 	Mixed
+	* @return 	<Mixed>
 	*/
 	public function getConfig($key=null)
 	{
@@ -77,7 +74,7 @@ class Auth implements AuthContract
 	*
 	* @access 	public
 	* @static
-	* @return 	String
+	* @return 	<String>
 	*/
 	public static function getAuthError() : String
 	{
@@ -89,6 +86,7 @@ class Auth implements AuthContract
 	*
 	* @param 	$message <String>
 	* @access 	public
+	* @return 	<void>
 	*/
 	public function setErrorMessage(String $message)
 	{
@@ -100,7 +98,7 @@ class Auth implements AuthContract
 	* Checks if an error has occured.
 	*
 	* @access 	public
-	* @return 	Boolean
+	* @return 	<Boolean>
 	*/
 	public function hasError()
 	{
@@ -111,7 +109,7 @@ class Auth implements AuthContract
 	* Returns an authenticated user.
 	*
 	* @access 	public
-	* @return 	Object
+	* @return 	<Object>
 	*/
 	public function user()
 	{
@@ -136,7 +134,7 @@ class Auth implements AuthContract
 	*
 	* @param 	$statuc <Boolean>
 	* @access 	protected
-	* @return 	void
+	* @return 	<void>
 	*/
 	protected function setErrorStatus(Bool $status)
 	{
@@ -148,7 +146,7 @@ class Auth implements AuthContract
 	*
 	* @param 	$key <String>
 	* @access 	protected
-	* @return 	String
+	* @return 	<Mixed>
 	*/
 	protected function getMessage(String $key) : String
 	{
