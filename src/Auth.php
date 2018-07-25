@@ -138,7 +138,7 @@ class Auth implements AuthContract
 	*/
 	protected function setErrorStatus(Bool $status)
 	{
-		$this->hasError = true;
+		$this->hasError = $status;
 	}
 
 	/**
